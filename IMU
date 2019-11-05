@@ -30,8 +30,8 @@ plot(M1_sit.Var1,mean_M1sit_chest)
 plot(M1_sit.Var1,mean_M1sit_ankle)
 legend('hand','chest','ankle')
 title('M1 sitting')
-xlabel('mean 3D acceleration (m/s^2)')
-ylabel('timestamp (s)')
+xlabel('timestamp (s)')
+ylabel('mean 3D acceleration (m/s^2)')
 hold off
 
 %% subject 2
@@ -50,8 +50,8 @@ plot(M2_sit.Var1,mean_M2sit_chest)
 plot(M2_sit.Var1,mean_M2sit_ankle)
 legend('hand','chest','ankle')
 title('M2 sitting')
-xlabel('mean 3D acceleration (m/s^2)')
-ylabel('timestamp (s)')
+xlabel('timestamp (s)')
+ylabel('mean 3D acceleration (m/s^2)')
 hold off
 
 %% Subjects 3 to 9
@@ -90,6 +90,6 @@ plot(M4_sit.Var1,mean_M4sit_chest)
 plot(M8_sit.Var1,mean_M8sit_chest)
 legend('M1','M2','M4','M8')
 title('Sitting, chest')
-xlabel('mean 3D acceleration (m/s^2)')
-ylabel('timestamp (s)')
+xlabel('timestamp (s)')
+ylabel('mean 3D acceleration (m/s^2)')
 hold off
