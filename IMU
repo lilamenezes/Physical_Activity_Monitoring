@@ -1,0 +1,95 @@
+% database: Physical activity monitoring
+% https://archive.ics.uci.edu/ml/datasets/PAMAP2+Physical+Activity+Monitoring
+
+M1 = readtable('subject101.dat');
+M2 = readtable('subject102.dat');
+M3 = readtable('subject103.dat');
+M4 = readtable('subject104.dat');
+M5 = readtable('subject105.dat');
+M6 = readtable('subject106.dat');
+M7 = readtable('subject107.dat');
+M8 = readtable('subject108.dat');
+M9 = readtable('subject109.dat');
+
+%% subjet 1
+M1_run = M1(M1.Var2 == 5,:); % running
+M1_sit = M1(M1.Var2 == 2,:); % sitting
+
+% mean of 3D acceleration data
+M1sit_ac_hand = table2array(M1_sit(:,5:10));
+mean_M1sit_hand = mean(M1sit_ac_hand,2,'omitnan');
+M1sit_ac_chest = table2array(M1_sit(:,22:27));
+mean_M1sit_chest = mean(M1sit_ac_chest,2,'omitnan');
+M1sit_ac_ankle = table2array(M1_sit(:,39:44));
+mean_M1sit_ankle = mean(M1sit_ac_ankle,2,'omitnan');
+
+% Plot comparison of data acquired from devices on hand, chest, ankle
+figure, hold on
+plot(M1_sit.Var1,mean_M1sit_hand)
+plot(M1_sit.Var1,mean_M1sit_chest)
+plot(M1_sit.Var1,mean_M1sit_ankle)
+legend('hand','chest','ankle')
+title('M1 sitting')
+xlabel('mean 3D acceleration (m/s^2)')
+ylabel('timestamp (s)')
+hold off
+
+%% subject 2
+M2_sit = M2(M2.Var2 == 2,:);
+
+M2sit_ac_hand = table2array(M2_sit(:,5:10));
+mean_M2sit_hand = mean(M2sit_ac_hand,2,'omitnan');
+M2sit_ac_chest = table2array(M2_sit(:,22:27));
+mean_M2sit_chest = mean(M2sit_ac_chest,2,'omitnan');
+M2sit_ac_ankle = table2array(M2_sit(:,39:44));
+mean_M2sit_ankle = mean(M2sit_ac_ankle,2,'omitnan');
+
+figure, hold on
+plot(M2_sit.Var1,mean_M2sit_hand)
+plot(M2_sit.Var1,mean_M2sit_chest)
+plot(M2_sit.Var1,mean_M2sit_ankle)
+legend('hand','chest','ankle')
+title('M2 sitting')
+xlabel('mean 3D acceleration (m/s^2)')
+ylabel('timestamp (s)')
+hold off
+
+%% Subjects 3 to 9
+M3_sit = M3(M3.Var2 == 2,:);
+M3sit_ac_chest = table2array(M3_sit(:,22:27));
+mean_M3sit_chest = mean(M3sit_ac_chest,2,'omitnan');
+
+M4_sit = M4(M4.Var2 == 2,:);
+M4sit_ac_chest = table2array(M4_sit(:,22:27));
+mean_M4sit_chest = mean(M4sit_ac_chest,2,'omitnan');
+
+M5_sit = M5(M5.Var2 == 2,:);
+M5sit_ac_chest = table2array(M5_sit(:,22:27));
+mean_M5sit_chest = mean(M5sit_ac_chest,2,'omitnan');
+
+M6_sit = M6(M6.Var2 == 2,:);
+M6sit_ac_chest = table2array(M6_sit(:,22:27));
+mean_M6sit_chest = mean(M6sit_ac_chest,2,'omitnan');
+
+M7_sit = M7(M7.Var2 == 2,:);
+M7sit_ac_chest = table2array(M7_sit(:,22:27));
+mean_M7sit_chest = mean(M7sit_ac_chest,2,'omitnan');
+
+M8_sit = M8(M8.Var2 == 2,:);
+M8sit_ac_chest = table2array(M8_sit(:,22:27));
+mean_M8sit_chest = mean(M8sit_ac_chest,2,'omitnan');
+
+[uniqueM9] = unique(M9.Var2);  % 0,24
+
+%% Comparison of measurement on various subjects
+
+figure, hold on
+plot(M1_sit.Var1,mean_M1sit_chest)
+plot(M2_sit.Var1,mean_M2sit_chest)
+plot(M4_sit.Var1,mean_M4sit_chest)
+plot(M8_sit.Var1,mean_M8sit_chest)
+legend('M1','M2','M4','M8')
+title('Sitting, chest')
+xlabel('mean 3D acceleration (m/s^2)')
+ylabel('timestamp (s)')
+hold off
